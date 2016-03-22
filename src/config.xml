@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+   Sphinx-4 Configuration file
+-->
+
+<!-- ******************************************************** -->
+<!--  an4 configuration file                             -->
+<!-- ******************************************************** -->
+
+<config>        
+    
+    <!-- ******************************************************** -->
+    <!-- frequently tuned properties                              -->
+    <!-- ******************************************************** --> 
+
+    <property name="logLevel" value="WARNING"/>
+    
+    <property name="absoluteBeamWidth"  value="-1"/>
+    <property name="relativeBeamWidth"  value="1E-80"/>
+    <property name="wordInsertionProbability" value="1E-36"/>
+    <property name="languageWeight"     value="8"/>
+    
+    <property name="frontend" value="epFrontEnd"/>
+    <property name="recognizer" value="recognizer"/>
+    <property name="showCreations" value="false"/>
+    
+    
+
+    <!-- ******************************************************** -->
+    <!-- The live frontend configuration                          -->
+    <!-- ******************************************************** -->
+    <component name="epFrontEnd" type="edu.cmu.sphinx.frontend.FrontEnd">
+        <propertylist name="pipeline">
+        	<item>audioFileDataSource </item>
+			<item>dataBlocker </item>
+			<item>preemphasizer </item>
+			<item>speechClassifier </item>
+			<item>speechMarker </item>
+			<item>windower </item>
+			<item>fft </item>
+			<item>nonSpeechDataFilter </item>
+			<item>melFilterBank </item>
+			<item>dct </item>
+			<item>liveCMN </item>
+			<item>featureExtraction </item>
+        </propertylist>
+    </component>
+
+	<!-- original config
+	<component name="epFrontEnd" type="edu.cmu.sphinx.frontend.FrontEnd">
+        <propertylist name="pipeline">
+            <item>audioFileDataSource </item>
+            <item>dataBlocker </item>
+            <item>speechClassifier </item>
+            <item>speechMarker </item>
+            <item>nonSpeechDataFilter </item>
+            <item>preemphasizer </item>
+            <item>windower </item>
+            <item>fft </item>
+            <item>melFilterBank </item>
+            <item>dct </item>
+            <item>liveCMN </item>
+            <item>featureExtraction </item>
+        </propertylist>
+    </component>
+	-->
+
+    <!-- ******************************************************** -->
+    <!-- The frontend pipelines                                   -->
+    <!-- ******************************************************** -->
+
+    <component name="audioFileDataSource" type="edu.cmu.sphinx.frontend.util.AudioFileDataSource"/>
+
+    <component name="dataBlocker" type="edu.cmu.sphinx.frontend.DataBlocker"/>
+    
+	
+    <component name="speechClassifier" type="edu.cmu.sphinx.frontend.endpoint.SpeechClassifier"/>
+    
+    <component name="nonSpeechDataFilter" 
+               type="edu.cmu.sphinx.frontend.endpoint.NonSpeechDataFilter"/>
+    
+    <component name="speechMarker" type="edu.cmu.sphinx.frontend.endpoint.SpeechMarker" />
+        
+    <component name="preemphasizer"
+               type="edu.cmu.sphinx.frontend.filter.Preemphasizer"/>
+    
+    <component name="windower" 
+               type="edu.cmu.sphinx.frontend.window.RaisedCosineWindower">
+    </component>
+    
+    <component name="fft" 
+            type="edu.cmu.sphinx.frontend.transform.DiscreteFourierTransform">
+    </component>
+    
+    <component name="melFilterBank" 
+        type="edu.cmu.sphinx.frontend.frequencywarp.MelFrequencyFilterBank">
+    </component>
+    
+    <component name="dct" 
+            type="edu.cmu.sphinx.frontend.transform.DiscreteCosineTransform"/>
+    
+    <component name="liveCMN" 
+               type="edu.cmu.sphinx.frontend.feature.LiveCMN"/>
+        
+    <component name="featureExtraction" 
+               type="edu.cmu.sphinx.frontend.feature.DeltasFeatureExtractor"/>
+       
+    
+    <!-- ******************************************************* -->
+    <!--  monitors                                               -->
+    <!-- ******************************************************* -->
+    
+
+    
+</config>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
